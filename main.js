@@ -23,8 +23,9 @@ var proj_matrix;
 var mov_matrix;
 var view_matrix;
 
-var rotateSpeed;
-var rotateBuffer;
+var rotateBufferZ;
+var rotateBufferX;
+var rotateBufferY;
 
 var time_old;
 var ang;
@@ -40,10 +41,11 @@ var dt;
 
 function init() {
     canvasDimension = 500;
-    rotateSpeed = 0.0013;
-    rotateBuffer = 1;
+    rotateBufferZ = 0.0001;
+    rotateBufferY = 0.001;
+    rotateBufferX = 0.001;
     time_old = 0;
-
+    
     canvas = document.getElementById('mainCanvas');
     canvas.width = canvasDimension;
     canvas.height = canvasDimension;
@@ -66,10 +68,10 @@ function init() {
 
     colors = [
         1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
-        0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
         0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
         5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
         0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
+        0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
         1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1,
     ];
 
@@ -207,9 +209,9 @@ function rotateY(m, angle) {
 
 animate = function(time) {
     dt = time - time_old;
-    rotateZ(mov_matrix, dt * rotateSpeed);
-    rotateY(mov_matrix, dt * rotateSpeed * 1.5);
-    rotateX(mov_matrix, dt * rotateSpeed * 1.5);
+    rotateZ(mov_matrix, dt * rotateBufferZ);
+    rotateY(mov_matrix, dt * rotateBufferY);
+    rotateX(mov_matrix, dt * rotateBufferX);
     time_old = time;
 
     gl.enable(gl.DEPTH_TEST);
@@ -235,6 +237,5 @@ animate = function(time) {
 document.onreadystatechange = function() {
     if (document.readyState === 'complete') {
         init();
-
     }
 };
