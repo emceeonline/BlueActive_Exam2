@@ -22,7 +22,9 @@ var color;
 var proj_matrix;
 var mov_matrix;
 var view_matrix;
+
 var rotateSpeed;
+var rotateBuffer;
 
 var time_old;
 var ang;
@@ -39,7 +41,13 @@ var dt;
 function init() {
     canvasDimension = 500;
     rotateSpeed = 0.001;
+    rotateBuffer = 10;
     time_old = 0;
+
+    //change speed and direction every 5secs
+    setInterval( () => {
+        //console.log(rotateBuffer);
+    }, 1000);
 
     canvas = document.getElementById('mainCanvas');
     canvas.width = canvasDimension;
