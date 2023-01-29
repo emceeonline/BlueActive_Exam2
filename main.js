@@ -40,14 +40,9 @@ var dt;
 
 function init() {
     canvasDimension = 500;
-    rotateSpeed = 0.001;
-    rotateBuffer = 10;
+    rotateSpeed = 0.0013;
+    rotateBuffer = 1;
     time_old = 0;
-
-    //change speed and direction every 5secs
-    setInterval( () => {
-        //console.log(rotateBuffer);
-    }, 1000);
 
     canvas = document.getElementById('mainCanvas');
     canvas.width = canvasDimension;
